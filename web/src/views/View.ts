@@ -12,7 +12,7 @@ K > {
 
   abstract template(): string;
 
-  regisonsMap(): {
+  regionsMap(): {
     [key: string]: string;
   } {
     return {};
@@ -43,7 +43,7 @@ K > {
   }
 
   mapRegions(fragment : DocumentFragment): void {
-    const regionsMap = this.regisonsMap();
+    const regionsMap = this.regionsMap();
 
     for (let key in regionsMap) {
       const selector = regionsMap[key];
@@ -55,6 +55,8 @@ K > {
     }
   }
 
+  onRender(): void {}
+
   render(): void {
     this.parent.innerHTML = "";
 
@@ -63,6 +65,8 @@ K > {
 
     this.bindEvents(templateElement.content);
     this.mapRegions(templateElement.content);
+
+    this.onRender();
 
     this.parent.append(templateElement.content);
   }
